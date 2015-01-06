@@ -21,6 +21,10 @@ class Purposes extends CI_Controller {
         if (empty($data['purpose_item'])) {
             show_404();
         }
+        
+        if ($data['purpose_item']['parent'] != null) {
+            $data['parent'] = $this->purposes_model->get_purposes($data['purpose_item']['parent']);
+        }        
 
         $data['title'] = $data['purpose_item']['name'];
 
@@ -34,17 +38,17 @@ class Purposes extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Add a new pattern';
+        $data['purposes'] = $this->purposes_model->get_purposes();        
 
         $this->form_validation->set_rules('name', 'Name', 'required');
-        //     $this->form_validation->set_rules('text', 'text', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('purposes/create');
             $this->load->view('templates/footer');
         } else {
             $this->purposes_model->set_purposes();
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('purposes/success');
             $this->load->view('templates/footer');
         }

@@ -36,15 +36,13 @@ class Patterns extends CI_Controller {
         $data['title'] = 'Add a new pattern';
 
         $this->form_validation->set_rules('name', 'Name', 'required');
-        //     $this->form_validation->set_rules('text', 'text', 'required');
-
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('patterns/create');
             $this->load->view('templates/footer');
         } else {
             $this->patterns_model->set_patterns();
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('patterns/success');
             $this->load->view('templates/footer');
         }

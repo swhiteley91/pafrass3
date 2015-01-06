@@ -1,4 +1,5 @@
-<h2></h2>
+<p><a href="../patterns">Go back to patterns</a></p>
+<h2>Add new pattern</h2>
 
 <?php echo validation_errors(); ?>
 

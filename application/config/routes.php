@@ -52,6 +52,7 @@ $route['purposes/(:any)'] = 'purposes/view/$1';
 $route['scopes'] = 'scopes';
 $route['scopes/create'] = 'scopes/create';
 $route['scopes/(:any)'] = 'scopes/view/$1';
+$route['finder'] = 'finder';
 
 
 /* End of file routes.php */

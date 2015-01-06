@@ -18,9 +18,14 @@ class Scopes extends CI_Controller {
 
     public function view($id) {
         $data['scope_item'] = $this->scopes_model->get_scopes($id);
+
         if (empty($data['scope_item'])) {
             show_404();
         }
+        
+        if ($data['scope_item']['parent'] != null) {
+            $data['parent'] = $this->scopes_model->get_scopes($data['scope_item']['parent']);
+        }        
 
         $data['title'] = $data['scope_item']['name'];
 
@@ -34,17 +39,18 @@ class Scopes extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Add a new scope';
+        $data['scopes'] = $this->scopes_model->get_scopes();
+
 
         $this->form_validation->set_rules('name', 'Name', 'required');
-        //     $this->form_validation->set_rules('text', 'text', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header');
-            $this->load->view('scopes/create');
+            $this->load->view('templates/header', $data);
+            $this->load->view('scopes/create', $data);
             $this->load->view('templates/footer');
         } else {
             $this->scopes_model->set_scopes();
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('scopes/success');
             $this->load->view('templates/footer');
         }
