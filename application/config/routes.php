@@ -46,6 +46,12 @@ $route['default_controller'] = "pages/view";
 $route['patterns'] = 'patterns';
 $route['patterns/create'] = 'patterns/create';
 $route['patterns/(:any)'] = 'patterns/view/$1';
+$route['purposes'] = 'purposes';
+$route['purposes/create'] = 'purposes/create';
+$route['purposes/(:any)'] = 'purposes/view/$1';
+$route['scopes'] = 'scopes';
+$route['scopes/create'] = 'scopes/create';
+$route['scopes/(:any)'] = 'scopes/view/$1';
 
 
 /* End of file routes.php */

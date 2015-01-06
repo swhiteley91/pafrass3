@@ -1,31 +1,31 @@
 <?php
 
-class Patterns extends CI_Controller {
+class Purposes extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('patterns_model');
+        $this->load->model('purposes_model');
     }
 
     public function index() {
-        $data['patterns'] = $this->patterns_model->get_patterns();
-        $data['title'] = 'Patterns';
+        $data['purposes'] = $this->purposes_model->get_purposes();
+        $data['title'] = 'Purposes';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('patterns/index', $data);
+        $this->load->view('purposes/index', $data);
         $this->load->view('templates/footer');
     }
 
     public function view($id) {
-        $data['pattern_item'] = $this->patterns_model->get_patterns($id);
-        if (empty($data['pattern_item'])) {
+        $data['purpose_item'] = $this->purposes_model->get_purposes($id);
+        if (empty($data['purpose_item'])) {
             show_404();
         }
 
-        $data['title'] = $data['pattern_item']['name'];
+        $data['title'] = $data['purpose_item']['name'];
 
         $this->load->view('templates/header', $data);
-        $this->load->view('patterns/view', $data);
+        $this->load->view('purposes/view', $data);
         $this->load->view('templates/footer');
     }
 
@@ -40,12 +40,12 @@ class Patterns extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header');
-            $this->load->view('patterns/create');
+            $this->load->view('purposes/create');
             $this->load->view('templates/footer');
         } else {
-            $this->patterns_model->set_patterns();
+            $this->purposes_model->set_purposes();
             $this->load->view('templates/header');
-            $this->load->view('patterns/success');
+            $this->load->view('purposes/success');
             $this->load->view('templates/footer');
         }
     }
