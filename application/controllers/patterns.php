@@ -5,6 +5,8 @@ class Patterns extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('patterns_model');
+        $this->load->model('purposes_model');
+        $this->load->model('scopes_model');            
     }
 
     public function index() {
@@ -23,6 +25,8 @@ class Patterns extends CI_Controller {
         }
 
         $data['title'] = $data['pattern_item']['name'];
+        $data['parentPurpose'] = $this->purposes_model->get_purposes($data['pattern_item']['parentPurpose']);
+        $data['parentScope'] = $this->scopes_model->get_scopes($data['pattern_item']['parentScope']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('patterns/view', $data);
@@ -34,6 +38,9 @@ class Patterns extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Add a new pattern';
+    
+        $data['purposes'] = $this->purposes_model->get_purposes();  
+        $data['scopes'] = $this->scopes_model->get_scopes();        
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         if ($this->form_validation->run() === FALSE) {

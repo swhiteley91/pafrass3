@@ -26,7 +26,9 @@ class Patterns_model extends CI_Model {
             'description' => $this->input->post('description'),
             'problem' => $this->input->post('problem'),
             'solution' => $this->input->post('solution'),
-            'consequences' => $this->input->post('consequences')
+            'consequences' => $this->input->post('consequences'),
+            'parentPurpose' => $this->input->post('parentpurpose'),
+            'parentScope' => $this->input->post('parentscope')
         );
 
         return $this->db->insert('patterns', $data);

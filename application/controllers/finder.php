@@ -10,11 +10,14 @@ class Finder extends CI_Controller {
     }
 
     public function index() {
-        $data['purposes'] = $this->patterns_model->get_patterns();
-          $data['title'] = 'Patterns';
+        $this->load->helper('form');        
+        
+        $data['purposes'] = $this->purposes_model->get_purposes();
+        $data['scopes'] = $this->scopes_model->get_scopes();
+        $data['title'] = 'Pattern finder';
 
-        $this->load->view('templates/header');
-        $this->load->view('finder/index');
+        $this->load->view('templates/header', $data);
+        $this->load->view('finder/index', $data);
         $this->load->view('templates/footer');
     }
 
