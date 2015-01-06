@@ -10,7 +10,7 @@
         if ($selectedscope == $scopes_item['id']) {
             echo 'selected="selected"';
         }
-        ?>><?php echo $scopes_item['name']; ?></option>
+        ?>><?php echo $scopes_item['stripe'] . $scopes_item['name']; ?></option>
             <?php endforeach ?>  
             </select><br/>
             <label for="title">Purpose</label>
@@ -21,7 +21,7 @@
             if ($selectedpurpose == $purpose_item['id']) {
                 echo 'selected="selected"';
             }
-            ?>><?php echo $purpose_item['name']; ?></option>
+            ?>><?php echo $purpose_item['stripe'] . $purpose_item['name']; ?></option>
                 <?php endforeach ?>  
                 </select>
                 <p><button type="submit">Go and look!</button></p>

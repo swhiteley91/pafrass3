@@ -35,6 +35,15 @@ class Scopes_model extends CI_Model {
         return $this->db->insert('scopes', $data);
     }
 
+    public function get_scope_hierarchy($rows, $stripes, $id = null) {
+        $query = $this->db->from("scopes")->where("parent", $id)->get();
 
+        foreach ($query->result_array() as $row) {
+            $row['stripe'] = $stripes;
+            $rows[] = $row;
+            $rows = $this->get_scope_hierarchy($rows, $stripes . "- ", $row['id']);
+        }
+        return $rows;
+    }
 
 }

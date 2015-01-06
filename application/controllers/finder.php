@@ -12,8 +12,8 @@ class Finder extends CI_Controller {
     public function index() {
         $this->load->helper('form');
 
-        $data['purposes'] = $this->purposes_model->get_purposes();
-        $data['scopes'] = $this->scopes_model->get_scopes();
+        $data['purposes'] = $this->purposes_model->get_purposes_hierarchy(array(), "");
+        $data['scopes'] = $this->scopes_model->get_scope_hierarchy(array(), "");
         $data['title'] = 'Pattern finder';
 
         $data['selectedscope'] = $this->input->get('scope', TRUE);

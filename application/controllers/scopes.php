@@ -39,7 +39,7 @@ class Scopes extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Add a new scope';
-        $data['scopes'] = $this->scopes_model->get_scopes();
+        $data['scopes'] = $this->scopes_model->get_scope_hierarchy(array(), "");
 
 
         $this->form_validation->set_rules('name', 'Name', 'required');

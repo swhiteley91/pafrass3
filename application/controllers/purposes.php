@@ -38,7 +38,7 @@ class Purposes extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Add a new pattern';
-        $data['purposes'] = $this->purposes_model->get_purposes();        
+        $data['purposes'] = $this->purposes_model->get_purposes_hierarchy(array(), "");      
 
         $this->form_validation->set_rules('name', 'Name', 'required');
 

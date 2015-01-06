@@ -15,7 +15,7 @@
 <select name="parent">
     <option value="" selected="selected">no parent</option>
     <?php foreach ($purposes as $purpose_item): ?>
-        <option value="<?php echo $purpose_item['id']; ?>"><?php echo $purpose_item['name']; ?></option>
+        <option value="<?php echo $purpose_item['id']; ?>"><?php echo $purpose_item['stripe'] . $purpose_item['name']; ?></option>
     <?php endforeach ?>    
 </select>        
 

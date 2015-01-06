@@ -15,7 +15,7 @@
 <select name="parent">
     <option value="" selected="selected">no parent</option>
     <?php foreach ($scopes as $scope_item): ?>
-        <option value="<?php echo $scope_item['id'];?>"><?php echo $scope_item['name'];?></option>
+        <option value="<?php echo $scope_item['id'];?>"><?php echo $scope_item['stripe'] . $scope_item['name'];?></option>
     <?php endforeach ?>    
 </select>
 

@@ -33,5 +33,16 @@ class Purposes_model extends CI_Model {
 
         return $this->db->insert('purposes', $data);
     }
+    
+    public function get_purposes_hierarchy($rows, $stripes, $id = null) {
+        $query = $this->db->from("purposes")->where("parent", $id)->get();
+
+        foreach ($query->result_array() as $row) {
+            $row['stripe'] = $stripes;
+            $rows[] = $row;
+            $rows = $this->get_purposes_hierarchy($rows, $stripes . "- ", $row['id']);
+        }
+        return $rows;
+    }    
 
 }
