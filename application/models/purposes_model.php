@@ -19,11 +19,16 @@ class Purposes_model extends CI_Model {
     public function set_purposes() {
         $this->load->helper('url');
 
-    //    $slug = url_title($this->input->post('title'), 'dash', TRUE);
+        if ($this->input->post('parent') != '') {
+            $parent = $this->input->post('parent');
+        } else {
+            $parent = null;
+        }
 
         $data = array(
             'name' => $this->input->post('name'),
-            'description' => $this->input->post('description')
+            'description' => $this->input->post('description'),
+            'parent' => $parent
         );
 
         return $this->db->insert('purposes', $data);

@@ -19,7 +19,6 @@ class Scopes_model extends CI_Model {
     public function set_scopes() {
         $this->load->helper('url');
 
-        //    $slug = url_title($this->input->post('title'), 'dash', TRUE);
 
         if ($this->input->post('parent') != '') {
             $parent = $this->input->post('parent');

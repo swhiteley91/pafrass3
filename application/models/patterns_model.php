@@ -19,7 +19,7 @@ class Patterns_model extends CI_Model {
     public function set_patterns() {
         $this->load->helper('url');
 
-    //    $slug = url_title($this->input->post('title'), 'dash', TRUE);
+        //    $slug = url_title($this->input->post('title'), 'dash', TRUE);
 
         $data = array(
             'name' => $this->input->post('name'),
@@ -32,6 +32,11 @@ class Patterns_model extends CI_Model {
         );
 
         return $this->db->insert('patterns', $data);
+    }
+
+    public function get_patterns_by_scope_purpose($scope, $purpose) {
+        $query = $this->db->get_where('patterns', array('parentScope' => $scope, 'parentPurpose' => $purpose));
+        return $query->result_array();
     }
 
 }
